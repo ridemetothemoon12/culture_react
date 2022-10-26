@@ -1,0 +1,194 @@
+import React, {useState, useEffect} from 'react'
+import { Routes, Route } from 'react-router-dom'
+import axios from 'axios'
+import styled from 'styled-components'
+import { useMediaQuery } from 'react-responsive'
+
+const Header = styled.div`
+    width: 100%;
+    height: 100px;
+    position: fixed;
+    z-index: 999;
+    transition: all .2s;
+    &.on {
+        background-color: #999;
+    }
+`
+const HeaderWrap = styled.div`
+    width: 93%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    @media (min-width: 641px) and (max-width: 1024px) {
+        display: grid;
+        grid-template-columns: repeat(3, 33%);
+    }
+    @media (max-width: 640px) {
+        display: grid;
+        grid-template-columns: repeat(3, 33%);
+    }
+`
+const HeaderLogoAndMenu = styled.div`
+    flex-basis: 750px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    @media (min-width: 641px) and (max-width: 1024px) {
+        grid-column: 2/3;
+        justify-content: center;
+        align-items: center;
+    }
+    @media (max-width: 640px) {
+        grid-column: 2/3;
+        justify-content: center;
+        align-item: center;
+    }
+`
+const HeaderLogo = styled.div`
+    width: 233px;
+    height: 50px;
+    @media (min-width: 641px) and (max-width: 1024px) {
+        img {
+            max-width: 200px !important;
+        }
+    }
+    @media (max-width: 640px) {
+        img {
+            max-width: 200px !important;
+        }
+    }
+`
+const HeaderMenu = styled.ul`
+    font-family: nanumR;
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+    width: 450px;
+    height: 50px;
+    margin-left: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    li {
+        transition: all .3s;
+        cursor: pointer;
+        &:hover {
+            color: #143b63;
+        }
+    }
+`
+const HeaderIcon = styled.div`
+    width: 150px;
+    height: 50px;
+    margin-left: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media (min-width: 641px) and (max-width: 1024px) {
+        width: 100%;
+        grid-column: 3/4;
+        justify-content: flex-end;
+    }
+    @media (max-width: 640px) {
+        width: 100%;
+        grid-column: 3/4;
+        justify-content: flex-end;
+    }
+`
+const HeaderIconItem = styled.div`
+    width: 30px;
+    height: 30px;
+    background: ${(props) => props.url || "none"};
+    background-size: cover;
+    background-position: center;
+    transition: all .3s;
+    &:hover {
+        scale: 1.06;
+    }
+    @media (min-width: 641px) and (max-width: 1024px) {
+        margin: 0 20px;
+    }
+`
+function Nav() {
+    const IsDesktop = useMediaQuery({ query: "(min-width: 1025px"})
+    const IsTablet = useMediaQuery({ query: "(min-width: 641px) and (max-width: 1024px)" });
+    const IsMobile = useMediaQuery({ query: "(max-width: 640px)" });
+
+    const [ScrollY, setScrollY] = useState(0); 
+    const handleFollow = () => {
+        setScrollY(window.pageYOffset); // window 스크롤 값을 ScrollY에 저장
+    }
+    useEffect(() => {
+        const watch = () => {
+            window.addEventListener('scroll', handleFollow);
+        }
+        watch(); // addEventListener 함수를 실행
+        return () => {
+            window.removeEventListener('scroll', handleFollow); // addEventListener 함수를 삭제
+        }
+    })
+
+    const [navList, setNavs] = useState([]);
+    const [iconList, setIcons] = useState([]);
+    const fetchUsers = async() => {
+        const response = await axios.get(
+            'Nav.json'
+        );
+        setNavs(response.data.navs);
+        setIcons(response.data.icons);
+    };
+    useEffect(() => {
+        fetchUsers();
+    }, []);
+    return (
+    <>
+        <Header className={ScrollY > 800 && "on"}>
+            <HeaderWrap>
+                <HeaderLogoAndMenu>
+                    <HeaderLogo><img src='Images/logo.png' alt='mainLogo'/></HeaderLogo>
+                { IsDesktop &&
+                    <HeaderMenu>
+                        {
+                            navList.map((e) => {
+                                return <li key={e.id}>{e.title}</li>
+                            })
+                        }
+                    </HeaderMenu>
+                }
+                </HeaderLogoAndMenu>
+                { IsDesktop &&           
+                    <HeaderIcon>
+                    {
+                        iconList.map((e) => {
+                            return <HeaderIconItem key={e.id} url={e.src}></HeaderIconItem>
+                        })
+                    }
+                    </HeaderIcon>
+                }
+                { IsTablet &&          
+                    <HeaderIcon>
+                    {
+                        iconList.map((e) => {
+                            return <HeaderIconItem key={e.id} url={e.src}></HeaderIconItem>
+                        })
+                    }
+                    </HeaderIcon>
+                }
+                { IsMobile &&          
+                    <HeaderIcon>
+                    {
+                        iconList.map((e) => {
+                            return <HeaderIconItem key={e.id} url={e.src}></HeaderIconItem>
+                        })
+                    }
+                    </HeaderIcon>
+                }
+            </HeaderWrap>
+        </Header>
+    </>
+  )
+}
+
+export default Nav
