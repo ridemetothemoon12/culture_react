@@ -1,0 +1,212 @@
+{
+    "navs" : [
+        {
+            "id" : 1,
+            "title" : "정보공개"
+        },
+        {
+            "id" : 2,
+            "title" : "민원마당"
+        },
+        {
+            "id" : 3,
+            "title" : "자료공간"
+        },
+        {
+            "id" : 4,
+            "title" : "주요정책"
+        },
+        {
+            "id" : 5,
+            "title" : "문체부소개"
+        }
+    ],
+    "icons" : [
+        {
+            "id" : 1,
+            "src" : "url('./Images/search.png')"
+        },
+        {
+            "id" : 2,
+            "src" : "url('./Images/login.png')"
+        },
+        {
+            "id" : 3,
+            "src" : "url('./Images/language.png')"
+        }
+    ],
+    "mainIcons" : [
+        {
+            "id" : 1,
+            "src" : "./Images/icon1.png",
+            "text" : "업무계획"
+        },
+        {
+            "id" : 2,
+            "src" : "./Images/icon2.png",
+            "text" : "분야별정보"
+        },
+        {
+            "id" : 3,
+            "src" : "./Images/icon3.png",
+            "text" : "전자민원"
+        },
+        {
+            "id" : 4,
+            "src" : "./Images/icon4.png",
+            "text" : "열린장관실"
+        },
+        {
+            "id" : 5,
+            "src" : "./Images/icon5.png",
+            "text" : "직원검색"
+        },
+        {
+            "id" : 6,
+            "src" : "./Images/icon6.png",
+            "text" : "적극행정"
+        }
+    ],
+    "mainCatNavs" : [
+        {
+            "id" : 1,
+            "text" : "공지사항"
+        },
+        {
+            "id" : 2,
+            "text" : "보도자료"
+        },
+        {
+            "id" : 3,
+            "text" : "채용정보"
+        },
+        {
+            "id" : 4,
+            "text" : "입찰정보"
+        }
+    ],
+    "QnaCatItems" : [
+        {
+            "id" : 1,
+            "Ddate" : "09",
+            "YMdate" : "22-08",
+            "text" : "공직자종교차별신고센터 홍보영상물 제작"
+        },
+        {
+            "id" : 2,
+            "Ddate" : "12",
+            "YMdate" : "22-08",
+            "text" : "디지털·친환경·무장애 공공도서관 전환 추진을 위한 연구"
+        },
+        {
+            "id" : 3,
+            "Ddate" : "29",
+            "YMdate" : "22-08",
+            "text" : "문화예술발전유공 시상식 행사 용역"
+        }
+    ],
+    "FooterNavsTop" : [
+        {
+            "id" : 1,
+            "text" : "개인정보처리방침"
+        },
+        {
+            "id" : 2,
+            "text" : "저작권정책"
+        },
+        {
+            "id" : 3,
+            "text" : "행정서비스헌정"
+        },
+        {
+            "id" : 4,
+            "text" : "누리집 이용안내"
+        },
+        {
+            "id" : 5,
+            "text" : "누리집 개선의견"
+        },
+        {
+            "id" : 6,
+            "text" : "읽기 전용 프로그램 안내"
+        }
+    ],
+    "FooterNavsBottom" : [
+        {
+            "id" : 1,
+            "text" : "주소 : 30119 세종특별자치시 갈매로 388 정부세종청사 15동"
+        },
+        {
+            "id" : 2,
+            "text" : "대표전화 : 044-203-2000(월~금 09:00 ~ 18:00, 공휴일 제외)"
+        },
+        {
+            "id" : 3,
+            "text" : "팩스 : 044-203-3447"
+        },
+        {
+            "id" : 4,
+            "text" : "Copyright Ministry of Culture, Sports and Tourism"
+        }
+    ],
+    "FooterSnsLogo" : [
+        {
+            "id" : 1,
+            "src" : "url('./Images/facebook.png')"
+        },
+        {
+            "id" : 2,
+            "src" : "url('./Images/youtube.png')"
+        },
+        {
+            "id" : 3,
+            "src" : "url('./Images/insta.png')"
+        }
+    ],
+    "ContentCurtain" : [
+        {
+            "id" : 1,
+            "src" : "url('./Images/image11-h.jpg')",
+            "title" : "관광",
+            "subtitle" : "특색있는 지역 문화 관광"
+        },
+        {
+            "id" : 2,
+            "src" : "url('./Images/image22-h.jpg')",
+            "title" : "연극",
+            "subtitle" : "일상에서 다시 누리는 문화생활"
+        },
+        {
+            "id" : 3,
+            "src" : "url('./Images/image33-h.jpg')",
+            "title" : "뮤지컬",
+            "subtitle" : "문화예술을 통한 국민위로"
+        }
+    ],
+    "ContentPortal" : [
+        {
+            "id" : 1,
+            "src" : "url('./Images/Layer 35.png')"
+        },
+        {
+            "id" : 2,
+            "src" : "url('./Images/Layer 36.png')"
+        },
+        {
+            "id" : 3,
+            "src" : "url('./Images/Layer 37.png')"
+        },        
+        {
+            "id" : 4,
+            "src" : "url('./Images/Layer 38.png')"
+        },
+        {
+            "id" : 5,
+            "src" : "url('./Images/Layer 39.png')"
+        },
+        {
+            "id" : 6,
+            "src" : "url('./Images/Layer 40.png')"
+        }
+    ]
+}

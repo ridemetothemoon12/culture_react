@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/culture_react/static/css/main.178f3af5.css",
+    "main.js": "/culture_react/static/js/main.0bd75415.js",
+    "static/js/787.6c1db868.chunk.js": "/culture_react/static/js/787.6c1db868.chunk.js",
+    "static/media/NanumSquareR.ttf": "/culture_react/static/media/NanumSquareR.924c33f60f994924964c.ttf",
+    "index.html": "/culture_react/index.html",
+    "main.178f3af5.css.map": "/culture_react/static/css/main.178f3af5.css.map",
+    "main.0bd75415.js.map": "/culture_react/static/js/main.0bd75415.js.map",
+    "787.6c1db868.chunk.js.map": "/culture_react/static/js/787.6c1db868.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.178f3af5.css",
+    "static/js/main.0bd75415.js"
+  ]
+}
