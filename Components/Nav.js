@@ -56,6 +56,7 @@ const HeaderLogo = styled.div`
     }
     @media (max-width: 640px) {
         img {
+            margin-top: 5px;
             max-width: 200px !important;
         }
     }
@@ -93,8 +94,9 @@ const HeaderIcon = styled.div`
     }
     @media (max-width: 640px) {
         width: 100%;
+        height: 40px;
         grid-column: 3/4;
-        justify-content: flex-end;
+        justify-content: space-evenly;
     }
 `
 const HeaderIconItem = styled.div`
@@ -110,6 +112,23 @@ const HeaderIconItem = styled.div`
     @media (min-width: 641px) and (max-width: 1024px) {
         margin: 0 20px;
     }
+`
+const ContentMainMenuHamIconWrap = styled.div`
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    @media (min-width: 641px) and (max-width: 1024px) {
+        margin: 0 50px 0 10px;
+    }
+`
+const ContentMainMenuHamIconLine = styled.div`
+    width: 30px;
+    height: 4px;
+    border-radius: 50px;
+    background-color: white;
 `
 function Nav() {
     const IsDesktop = useMediaQuery({ query: "(min-width: 1025px"})
@@ -129,7 +148,12 @@ function Nav() {
             window.removeEventListener('scroll', handleFollow); // addEventListener 함수를 삭제
         }
     })
+    const [ScrollX, setScrollX] = useState(0);
+    const handleXoffset = () => {
+        setScrollX(window.innerWidth);
+    }
 
+    console.log(window.innerWidth);
     const [navList, setNavs] = useState([]);
     const [iconList, setIcons] = useState([]);
     const fetchUsers = async() => {
@@ -142,53 +166,59 @@ function Nav() {
     useEffect(() => {
         fetchUsers();
     }, []);
+    let tabIconList = iconList.filter(e => e.id < 2);
     return (
-    <>
-        <Header className={ScrollY > 800 && "on"}>
-            <HeaderWrap>
-                <HeaderLogoAndMenu>
-                    <HeaderLogo><img src='Images/logo.png' alt='mainLogo'/></HeaderLogo>
-                { IsDesktop &&
-                    <HeaderMenu>
-                        {
-                            navList.map((e) => {
-                                return <li key={e.id}>{e.title}</li>
-                            })
+        <>
+            <Header className={ScrollY > 800 && "on"}>
+                <HeaderWrap>
+                    <HeaderLogoAndMenu>
+                        <HeaderLogo><img src='Images/logo.png' alt='mainLogo'/></HeaderLogo>
+                        { IsDesktop &&
+                            <HeaderMenu>
+                                {
+                                    navList.map((e) => {
+                                        return <li key={e.id}>{e.title}</li>
+                                    })
+                                }
+                            </HeaderMenu>
                         }
-                    </HeaderMenu>
-                }
-                </HeaderLogoAndMenu>
-                { IsDesktop &&           
-                    <HeaderIcon>
-                    {
-                        iconList.map((e) => {
-                            return <HeaderIconItem key={e.id} url={e.src}></HeaderIconItem>
-                        })
-                    }
-                    </HeaderIcon>
-                }
-                { IsTablet &&          
-                    <HeaderIcon>
-                    {
-                        iconList.map((e) => {
-                            return <HeaderIconItem key={e.id} url={e.src}></HeaderIconItem>
-                        })
-                    }
-                    </HeaderIcon>
-                }
-                { IsMobile &&          
-                    <HeaderIcon>
-                    {
-                        iconList.map((e) => {
-                            return <HeaderIconItem key={e.id} url={e.src}></HeaderIconItem>
-                        })
-                    }
-                    </HeaderIcon>
-                }
-            </HeaderWrap>
-        </Header>
-    </>
-  )
+                    </HeaderLogoAndMenu>
+                        { IsDesktop &&           
+                            <HeaderIcon>
+                                {
+                                    iconList.map((e) => {
+                                        return <HeaderIconItem key={e.id} url={e.src}></HeaderIconItem>
+                                    })
+                                }
+                            </HeaderIcon>
+                        }
+                        { IsTablet &&          
+                            <HeaderIcon>
+                                {
+                                    tabIconList.map((e) => {
+                                        return <HeaderIconItem key={e.id} url={e.src}></HeaderIconItem>
+                                    })
+                                }
+                                <ContentMainMenuHamIconWrap>
+                                    <ContentMainMenuHamIconLine></ContentMainMenuHamIconLine>
+                                    <ContentMainMenuHamIconLine></ContentMainMenuHamIconLine>
+                                    <ContentMainMenuHamIconLine></ContentMainMenuHamIconLine>
+                                </ContentMainMenuHamIconWrap>
+                            </HeaderIcon>
+                        }
+                        { IsMobile &&          
+                            <HeaderIcon>
+                                <ContentMainMenuHamIconWrap>
+                                    <ContentMainMenuHamIconLine></ContentMainMenuHamIconLine>
+                                    <ContentMainMenuHamIconLine></ContentMainMenuHamIconLine>
+                                    <ContentMainMenuHamIconLine></ContentMainMenuHamIconLine>
+                                </ContentMainMenuHamIconWrap>
+                            </HeaderIcon>
+                        }
+                </HeaderWrap>
+            </Header>
+        </>
+    )
 }
 
 export default Nav

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Navigation, Scrollbar, A11y, EffectFade } from 'swiper';
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Pagination, Autoplay } from "swiper/core";
@@ -8,11 +8,6 @@ import styled, { keyframes } from 'styled-components';
 import axios from 'axios';
 import { useMediaQuery } from 'react-responsive';
 SwiperCore.use([Pagination, Autoplay, EffectFade]);
-
-const SwiperStyle = {
-    width: "100%",
-    height: "960px"
-}
 
 const SwiperSlidesBackground = styled.div`
     width: 100%;
@@ -46,6 +41,29 @@ const ImageWrap = styled.div`
             width: 80%;
         }
     }
+`
+const ImageMouseScrollAnimation = keyframes`
+    0% {
+        top: 80%;
+    }
+    50% {
+        top: 82%;
+    }
+    100% {
+        top: 80%;
+    }
+`
+const ImageMouseScroll = styled.div`
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    width: 30px;
+    height: 60px;
+    z-index: 2;
+    background: url("./Images/scrolliscon.png");
+    background-size: cover;
+    background-position: center;
+    animation: ${ImageMouseScrollAnimation} 1.5s forwards infinite;
 `
 const MainBannerButtonWrap = styled.div`
     position: absolute;
@@ -594,6 +612,9 @@ const ContentCurtainItem = styled.div`
             &::after,::before {
                 width: 150px;
             }
+            p {
+                color: white;
+            }
         }
     }
     @media (max-width: 640px) {
@@ -734,17 +755,24 @@ function Main() {
     const [isNewsSlideChanged, setIsNewsSlideChanged] = useState(false);
     const [isImgHover, setIsImgHover] = useState(false);
     const [isCatClicked, setIsCatClicked] = useState(0);
+
+    const swiperRef = useRef(null);
+
+    const toSlide = (num) => {
+        swiperRef.current?.swiper.slideTo(num);
+    };
         return (
         <>
             <ContentMainBannerSwiperWrap>
                 <Swiper
+                    ref={swiperRef}
+                    onTransitionEnd={(e) => setIsMainBannerIndex(e.realIndex)}
                     modules={[ Navigation, Pagination, Scrollbar, A11y, EffectFade ]}
-                    onSlideChangeTransitionEnd={(e) => setIsMainBannerIndex(e.realIndex)}
                     style={{ width: "100%", height: "100%"}}
                     slidesPerView={1}
                     autoplay={{ delay: 3000, disableOnInteraction: false }}
                     loop={true}
-                    loopedSlides={1}
+                    loopedSlides={0}
                     >
                     <SwiperSlide><SwiperSlidesBackground background="url('./Images/banner1.png')"/></SwiperSlide>
                     <SwiperSlide><SwiperSlidesBackground background="url('./Images/banner2.png')"/></SwiperSlide>
@@ -757,11 +785,12 @@ function Main() {
                 <p>세계일류 <span>문화</span>매력국가</p>
                 <img src='./Images/arrow1.png' alt='arrow' />
             </ImageWrap>
+            {IsDesktop && <ImageMouseScroll></ImageMouseScroll>}
             <MainBannerButtonWrap>
                 {
                     [0,1,2,3].map((e,index)=>{
                         return (
-                            <MainBannerButtonRect key={index} className={isMainBannerIndex === index && "on"}><MainBannerButtonCircleLeft className={isMainBannerIndex === index && "on"}></MainBannerButtonCircleLeft><MainBannerbuttonCircleRight className={isMainBannerIndex === index && "on"}></MainBannerbuttonCircleRight></MainBannerButtonRect>
+                            <MainBannerButtonRect key={index} onClick={() => toSlide(index+1)} className={isMainBannerIndex === index && "on"}><MainBannerButtonCircleLeft className={isMainBannerIndex === index && "on"}></MainBannerButtonCircleLeft><MainBannerbuttonCircleRight className={isMainBannerIndex === index && "on"}></MainBannerbuttonCircleRight></MainBannerButtonRect>
                         )
                     })
                 }
