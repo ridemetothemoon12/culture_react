@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/culture_react/static/css/main.178f3af5.css",
-    "main.js": "/culture_react/static/js/main.0bd75415.js",
-    "static/js/787.6c1db868.chunk.js": "/culture_react/static/js/787.6c1db868.chunk.js",
-    "static/media/NanumSquareR.ttf": "/culture_react/static/media/NanumSquareR.924c33f60f994924964c.ttf",
-    "index.html": "/culture_react/index.html",
-    "main.178f3af5.css.map": "/culture_react/static/css/main.178f3af5.css.map",
-    "main.0bd75415.js.map": "/culture_react/static/js/main.0bd75415.js.map",
-    "787.6c1db868.chunk.js.map": "/culture_react/static/js/787.6c1db868.chunk.js.map"
+    "main.css": "/static/css/main.b356f69e.css",
+    "main.js": "/static/js/main.681ac7d5.js",
+    "static/js/787.6c1db868.chunk.js": "/static/js/787.6c1db868.chunk.js",
+    "static/media/NanumSquareR.ttf": "/static/media/NanumSquareR.924c33f60f994924964c.ttf",
+    "index.html": "/index.html",
+    "main.b356f69e.css.map": "/static/css/main.b356f69e.css.map",
+    "main.681ac7d5.js.map": "/static/js/main.681ac7d5.js.map",
+    "787.6c1db868.chunk.js.map": "/static/js/787.6c1db868.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.178f3af5.css",
-    "static/js/main.0bd75415.js"
+    "static/css/main.b356f69e.css",
+    "static/js/main.681ac7d5.js"
   ]
 }
