@@ -341,6 +341,23 @@ const ContentNoticeSwiperPaginationCustumWrap = styled.div`
     display: flex;
     justify-content: flex-end;
     margin: 0 auto;
+    @media (min-width: 641px) and (max-width: 1024px) {
+        width: 70%;
+        display: flex;
+        justify-content: space-between;
+    }
+`
+const ContentNoticeSwiperTabletNewsTitle = styled.div`
+    width: 30%;
+    height: 35px;
+    background-color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p {
+        font-weight: bold;
+    }
 `
 const ContentNoticeSwiperPaginationCustum = styled.div`
     width: 120px;
@@ -391,6 +408,40 @@ const ContentNoticePaginationProgressBar = styled.div`
         animation: ${progressBarAnimation} 3s linear forwards;
     }
 `
+const ContentNoticePaginationProgressPauseAndStart = styled.div`
+    width: 0;
+    height: 0;
+    border-bottom: 8px solid transparent;
+    border-top: 8px solid transparent;
+    border-left: 10px solid white;
+    border-right: 0px solid transparent;
+    margin-top: 20px;
+    margin-left: 10px;
+    &.on {
+        width: 10px;
+        position: relative;
+        border-color: transparent;
+        &::after {
+            position: absolute;
+            content: "";
+            width: 3px;
+            height: 12px;
+            top: -6px;
+            left: -10px;
+            background-color: white;
+        }
+        &::before {
+            position: absolute;
+            content: "";
+            width: 3px;
+            height: 12px;
+            top: -6px;
+            right: 0;
+            background-color: white;
+        }
+    }
+
+`
 const ContentMainBannerSwiperWrap = styled.div`
     width: 100%;
     height: 960px;
@@ -406,19 +457,21 @@ const ContentNoticeSwiperWrap = styled.div`
     width: 70%;
     height: 430px;
     margin: 0 20px;
-    &::after {
-        top: -50px;
-        left: -50px;
-        text-align: center;
-        line-height: 70px;
-        content: "NEWS";
-        position: absolute;
-        width: 170px;
-        height: 70px;
-        background-color: white;
-        z-index: 2;
-        filter: drop-shadow(0px 0px 3px black);
-        font-size: 27px;
+    @media (min-width: 1025px) {
+        &::after {
+            top: -50px;
+            left: -50px;
+            text-align: center;
+            line-height: 70px;
+            content: "NEWS";
+            position: absolute;
+            width: 170px;
+            height: 70px;
+            background-color: white;
+            z-index: 2;
+            filter: drop-shadow(0px 0px 3px black);
+            font-size: 27px;
+        }
     }
     @media (min-width: 641px) and (max-width: 1024px) {
         height: 245px;
@@ -755,12 +808,17 @@ function Main() {
     const [isNewsSlideChanged, setIsNewsSlideChanged] = useState(false);
     const [isImgHover, setIsImgHover] = useState(false);
     const [isCatClicked, setIsCatClicked] = useState(0);
+    const [smallBannerSwiper, setSmallBannerSwiperRef] = useState(null);
+    const [isSmallBannerSwiperPaused, setIsSmallBannerSwiperPaused] = useState(false);
 
     const swiperRef = useRef(null);
 
     const toSlide = (num) => {
         swiperRef.current?.swiper.slideTo(num);
     };
+    const pauseAndStartHero = () => {
+        isSmallBannerSwiperPaused === false ? smallBannerSwiper.autoplay.stop() : smallBannerSwiper.autoplay.start()
+    }
         return (
         <>
             <ContentMainBannerSwiperWrap>
@@ -854,10 +912,12 @@ function Main() {
                                 </ContentNoticePaginationItemWrap>
                                 <ContentNoticePaginationProgressBar className={(isNewsSlideChanged === true) ? "on" : null}></ContentNoticePaginationProgressBar>
                             </ContentNoticeSwiperPaginationCustum>
+                            <ContentNoticePaginationProgressPauseAndStart className={(isSmallBannerSwiperPaused === true) ? "" : "on" } onClick={() => {setIsSmallBannerSwiperPaused(!isSmallBannerSwiperPaused); pauseAndStartHero();}}></ContentNoticePaginationProgressPauseAndStart>
                         </ContentNoticeSwiperPaginationCustumWrap>
                     }
                     { IsTablet &&                
                         <ContentNoticeSwiperPaginationCustumWrap>
+                            <ContentNoticeSwiperTabletNewsTitle><p>NEWS</p></ContentNoticeSwiperTabletNewsTitle>
                             <ContentNoticeSwiperPaginationCustum>
                                 <ContentNoticePaginationItemWrap>
                                     <p style={{fontWeight: "bold"}}>01</p>
@@ -866,10 +926,12 @@ function Main() {
                                 </ContentNoticePaginationItemWrap>
                                 <ContentNoticePaginationProgressBar className={(isNewsSlideChanged === true) ? "on" : null}></ContentNoticePaginationProgressBar>
                             </ContentNoticeSwiperPaginationCustum>
+                            <ContentNoticePaginationProgressPauseAndStart className={(isSmallBannerSwiperPaused === true) ? "" : "on" } onClick={() => {setIsSmallBannerSwiperPaused(!isSmallBannerSwiperPaused); pauseAndStartHero();}}></ContentNoticePaginationProgressPauseAndStart>
                         </ContentNoticeSwiperPaginationCustumWrap>
                     }
                     <ContentNoticeSwiperWrap>
                         <Swiper
+                            onSwiper={setSmallBannerSwiperRef}
                             onSlideChangeTransitionStart={() => setIsNewsSlideChanged(!isNewsSlideChanged)}
                             onSlideChangeTransitionEnd={() => setIsNewsSlideChanged(!isNewsSlideChanged)}
                             style={{ width: "100%", height: "100%" }}

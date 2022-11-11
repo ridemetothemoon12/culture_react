@@ -1,0 +1,23 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+@font-face {
+  font-family: nanumR;
+  src: url("../public/Fonts/NanumSquareR.ttf");
+}
+li {
+  cursor: pointer;
+}
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

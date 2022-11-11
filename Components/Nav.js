@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react'
-import { Routes, Route } from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
 import { useMediaQuery } from 'react-responsive'
@@ -148,12 +147,11 @@ function Nav() {
             window.removeEventListener('scroll', handleFollow); // addEventListener 함수를 삭제
         }
     })
-    const [ScrollX, setScrollX] = useState(0);
-    const handleXoffset = () => {
-        setScrollX(window.innerWidth);
-    }
 
-    console.log(window.innerWidth);
+    const [onSetter, setOnsetter] = useState(0);
+    useEffect(() => {
+        setOnsetter(IsDesktop === true ? "800" : "580");
+    })
     const [navList, setNavs] = useState([]);
     const [iconList, setIcons] = useState([]);
     const fetchUsers = async() => {
@@ -169,7 +167,7 @@ function Nav() {
     let tabIconList = iconList.filter(e => e.id < 2);
     return (
         <>
-            <Header className={ScrollY > 800 && "on"}>
+            <Header className={ScrollY > onSetter && "on"}>
                 <HeaderWrap>
                     <HeaderLogoAndMenu>
                         <HeaderLogo><img src='Images/logo.png' alt='mainLogo'/></HeaderLogo>

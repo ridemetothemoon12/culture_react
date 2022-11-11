@@ -139,7 +139,7 @@ function Footer() {
                         </FooterTop>
                     }
                     <FooterBottom>
-                        <img src="/images/footerlogo2.png" alt="footerLogo" />
+                        <img src="./Images/footerlogo2.png" alt="footerLogo" />
                         <FooterCat width="55%" justify="center" style={{flexDirection: "column", marginLeft: "10px"}}>    
                             {
                                 FooterNavs && FooterNavs.FooterNavsBottom.map((e) => {
